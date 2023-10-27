@@ -1,0 +1,233 @@
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #008314d0;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+#icon {
+    font-size: 20px;
+}
+
+.login-body {
+    max-width: 100%;
+    background: linear-gradient(to left, #209d3d, #52ff6cd0, #209d3d);
+}
+
+body {
+    max-width: 83%;
+    position: right;
+}
+
+.login-container {
+    margin-top: 100px;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-container p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333; 
+}
+
+.login-container h4 {
+    text-align: center;
+    font-weight: 600;
+}
+
+.login-container .form-group label {
+    color: #333; 
+}
+
+.login-container .btn-primary {
+    background-color: #28a745; 
+    border-color: #28a745; 
+}
+
+.login-container .btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.login-container .text-danger {
+    color: #dc3545; 
+}
+
+.container-btn {
+    margin-top: 35px;
+}
+
+#tombol {
+    width: 250px;
+    margin-top: 30px;
+    border-radius: 0%;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px; 
+    justify-content: center;
+}
+
+.button-container form {
+    margin: 0; 
+}
+
+.add-user-button {
+    display: flex;
+    justify-content: flex-end; /* Mengatur agar tombol berada di sebelah kanan */
+    margin-bottom: 10px; /* Memberikan sedikit margin di bagian bawah tombol */
+}
+
+.logout {
+    margin-top: 330px;
+}
+
+.sidebar a {
+    margin: 10px 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}
+
+.main-content {
+    margin-left: 255px;
+    padding: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #333;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #333;
+    color: white;
+}
+
+.table th,
+.table td {
+    white-space: nowrap; 
+}
+
+.table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-width: 100%;
+    max-height: 73vh;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.td-num {
+    text-align: center;
+}
+
+.table th {
+    text-align: center;
+}
+
+.flash-messages {
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: fit-content;
+    height: fit-content;
+}
+
+.flash-messages .alert {
+    font-size: 18px; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+}
+
+
+.alert-info {
+    background-color: #3498db;
+    color: #fff; 
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000000; 
+    text-shadow: 0 1px 0 #000;
+    opacity: 0.2;
+    margin-top: -4.5px;
+}
+.close:hover {
+    color: #323232; 
+    opacity: 0.5;
+}
+
+/* Mengatur tampilan tabel */
+.custom-table {
+    margin: 0 auto; /* Tengahkan tabel */
+}
+
+/* Mengatur posisi teks di tengah kolom */
+.custom-table th,
+.custom-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Mengatur ukuran font teks dalam tabel */
+.custom-table th {
+    font-size: 15px;
+}
+
+.custom-table td {
+    font-size: 14px; /* Atur ukuran font sesuai kebutuhan Anda */
+    font-weight: 500;
+}
+
+.user-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-container {
+    padding: 10px;
+    width: 1230px;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}

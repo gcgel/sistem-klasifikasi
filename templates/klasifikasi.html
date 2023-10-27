@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classification App</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style/style.css">
+    <script src="https://kit.fontawesome.com/be1961fb16.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <p id="icon" class="text-white text-center"><strong>Sistem Klasifikasi Kemiskinan</strong></p>
+        <div class="container-btn">
+            <form action="/dashboard" method="post">
+                <input id="tombol" type="submit" value="Dashboard" class="btn text-white">
+            </form>
+            <form action="/klasifikasi" method="post">
+                <input id="tombol" type="submit" value="Klasifikasi" class="btn btn-light text-success">
+            </form>
+            <form action="/admin" method="post">
+                <input id="tombol" type="submit" value="Admin" class="btn text-white">
+            </form>
+            <div class="logout">
+                {% if 'user' in session %}
+                <form id="logout-form" action="/logout" method="post">
+                    <input id="tombol" type="submit" value="Keluar" class="btn btn-danger">
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="main-content container">        
+        <h2>Klasifikasi Data Rumah Tangga</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="alert alert-{{ category }}">
+                        {{ message }}
+                        <button type="button" class="close btn btn-light" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                        </button>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="form-container">
+            <form action="/classify" method="POST" class="">
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama Lengkap Kepala Keluarga</label>
+                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Lengkap" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="no_kk" class="form-label">Nomor Kartu Keluarga</label>
+                    <input type="text" id="no_kk" name="no_kk" class="form-control" placeholder="Nomor Kartu Keluarga" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="alamat" class="form-label">Alamat</label>
+                    <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat Tempat Tinggal Lengkap" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="jumlah_tanggungan" class="form-label">Jumlah Tanggungan</label>
+                    <input type="number" id="jumlah_tanggungan" name="jumlah_tanggungan" class="form-control" min="0" placeholder="Jumlah Tanggungan" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="pendidikan" class="form-label">Pendidikan Terakhir</label>
+                    <select id="pendidikan" name="pendidikan" class="form-select" required>
+                        <option value="">Silahkan pilih</option>
+                        <option value="DIPLOMA III">Diploma-III</option>
+                        <option value="DIPLOMA IV/STRATA I">Diploma-IV/Strata-I</option>
+                        <option value="SLTP/SEDERAJAT">SLTP/Sederajat</option>
+                        <option value="STRATA-II">Strata-II</option>
+                        <option value="SLTA/SEDERAJAT">SLTA/Sederajat</option>
+                        <option value="TAMAT SD/SEDERAJAT">SD/Sederajat</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                    <select id="pekerjaan" name="pekerjaan" class="form-select" required>
+                        <option value="">Silahkan pilih</option>
+                        <option value="TIDAK/BELUM BEKERJA">Tidak/Belum Bekerja</option>
+                        <option value="KARYAWAN SWASTA">Karyawan Swasta</option>
+                        <option value="WIRASWASTA">Wiraswasta</option>
+                        <option value="PENSIUNAN">Pensiunan</option>
+                        <option value="GURU">Guru</option>
+                        <option value="KARYAWAN BUMN">Karyawan BUMN</option>
+                        <option value="PEGAWAI NEGERI SIPIL">PNS</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="penghasilan" class="form-label">Penghasilan Perbulan</label>
+                    <input type="number" id="penghasilan" name="penghasilan" class="form-control" min="0" placeholder="Penghasilan Rata-Rata Perbulan" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="jumlah_mobil" class="form-label">Jumlah Mobil</label>
+                    <input type="number" id="jumlah_mobil" name="jumlah_mobil" class="form-control" min="0" placeholder="Jumlah Mobil yang Dimiliki" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="jumlah_motor" class="form-label">Jumlah Motor</label>
+                    <input type="number" id="jumlah_motor" name="jumlah_motor" class="form-control" min="0" placeholder="Jumlah Motor yang Dimiliki" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="status_kepemilikan" class="form-label">Status Kepemilikan Rumah</label>
+                    <select id="status_kepemilikan" name="status_kepemilikan" class="form-select" required>
+                        <option value="">Silahkan pilih</option>
+                        <option value="IKUT ORG TUA">Ikut Orang Tua</option>
+                        <option value="MILIK SENDIRI">Milik Sendiri</option>
+                        <option value="SEWA">Sewa</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="kondisi_rumah" class="form-label">Kondisi Rumah</label>
+                    <select id="kondisi_rumah" name="kondisi_rumah" class="form-select" required>
+                        <option value="">Silahkan pilih</option>
+                        <option value="PERMANEN">Permanen</option>
+                        <option value="SEMI PERMANEN">Semi Permanen</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3">
+                    <input type="submit" value="Submit" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('logout-form').addEventListener('submit', function(e) {
+            var confirmLogout = confirm('Apakah anda yakin ingin keluar dari aplikasi?');
+            if (!confirmLogout) {
+                e.preventDefault(); // Mencegah pengiriman form jika tidak yakin
+            }
+        });
+
+        document.querySelectorAll('.flash-messages .close').forEach(function(closeButton) {
+            closeButton.addEventListener('click', function() {
+                this.parentElement.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

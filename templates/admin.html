@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manajemen Admin</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.twbsPagination.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/be1961fb16.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <p id="icon" class="text-white text-center"><strong>Sistem Klasifikasi Kemiskinan</strong></p>
+        <div class="container-btn">
+            <form action="/dashboard" method="post">
+                <input id="tombol" type="submit" value="Dashboard" class="btn text-white">
+            </form>
+            <form action="/klasifikasi" method="post">
+                <input id="tombol" type="submit" value="Klasifikasi" class="btn text-white">
+            </form>
+            <form action="/admin" method="post">
+                <input id="tombol" type="submit" value="Admin" class="btn btn-light text-success">
+            </form>
+            <div class="logout">
+                {% if 'user' in session %}
+                <form id="logout-form" action="/logout" method="post">
+                    <input id="tombol" type="submit" value="Keluar" class="btn btn-danger">
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content container">
+        <h2>Daftar Admin Yang Terdaftar</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="alert alert-{{ category }}">
+                        {{ message }}
+                        <button type="button" class="close btn btn-light" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                        </button>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="add-user-button">
+            <form action="/add_user" method="post">
+                <input type="submit" value="Tambah Admin" class="btn btn-success">
+            </form>
+        </div>
+        <div class="table-responsive user-container" style="overflow: auto;">
+            <table class="table table-sm custom-table">
+                <thead class="table-success">
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <th>Username</th>
+                        <th>Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for admin in admin_data.iterrows() %}
+                        <tr>
+                            <td>{{ admin[1]['nama_user'] }}</td>
+                            <td>{{ admin[1]['username'] }}</td>
+                            <td>
+                                <div class="button-container">
+                                    <form action="/edit_user/{{ admin[1]['id'] }}" method="get">
+                                        <input type="submit" value="Edit" class="btn btn-info">
+                                    </form>
+                                    <form action="/delete_user/{{ admin[1]['id'] }}" method="post">
+                                        <input type="submit" value="Hapus" class="btn btn-danger">
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/static/js/script/script.js"></script>
+</body>
+</html>
